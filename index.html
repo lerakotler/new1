@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТехноДом - Магазин бытовой техники</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Дополнительные стили только для главной страницы */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            border-radius: 0 0 40px 40px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .products-section {
+            margin: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Адаптивность для главной страницы */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 0 50px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Шапка -->
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>ТехноДом</span>
+            </a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="pages/catalog.html"><i class="fas fa-list"></i> Каталог</a></li>
+                <li><a href="pages/delivery.html"><i class="fas fa-truck"></i> Доставка</a></li>
+                <li><a href="pages/contacts.html"><i class="fas fa-phone"></i> Контакты</a></li>
+                <li><a href="pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="pages/about.html"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="pages/cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+                <li><a href="pages/favorites.html"><i class="fas fa-heart"></i> Избранное <span class="fav-count">0</span></a></li>
+                <li><a href="pages/account.html"><i class="fas fa-user"></i> Кабинет</a></li>
+                <li><a href="pages/admin.html"><i class="fas fa-cog"></i> Админка</a></li>
+            </ul>
+        </nav>
+        
+        <div class="auth-buttons" id="auth-buttons">
+            <!-- Загружается через JS -->
+        </div>
+        
+        <button class="mobile-menu-btn" aria-label="Открыть меню">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>ТехноДом - техника для вашего комфорта</h1>
+                    <p>Более 1000 моделей бытовой техники от ведущих мировых производителей с гарантией и доставкой по всей России</p>
+                    <a href="pages/catalog.html" class="btn-primary">Перейти в каталог</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Быстрая доставка</h3>
+                <p>Доставка по Москве за 1-2 дня, по России 3-7 дней</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Гарантия 24 месяца</h3>
+                <p>Официальная гарантия на все товары</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-credit-card"></i>
+                <h3>Рассрочка 0%</h3>
+                <p>Рассрочка на 12 месяцев без процентов</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset"></i>
+                <h3>Поддержка 24/7</h3>
+                <p>Круглосуточная поддержка клиентов</p>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="section-header">
+                <h2>Популярные товары</h2>
+                <p>Самые востребованные модели техники</p>
+            </div>
+            
+            <div class="products-grid" id="featured-products">
+                <!-- Товары загружаются через JS -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="pages/catalog.html" class="btn-primary">Смотреть весь каталог</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>ТехноДом</h3>
+                <p>Магазин качественной бытовой техники с 2010 года</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Покупателям</h3>
+                <ul class="footer-links">
+                    <li><a href="pages/catalog.html">Каталог</a></li>
+                    <li><a href="pages/delivery.html">Доставка и оплата</a></li>
+                    <li><a href="pages/faq.html">Вопросы и ответы</a></li>
+                    <li><a href="pages/contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Информация</h3>
+                <ul class="footer-links">
+                    <li><a href="pages/about.html">О компании</a></li>
+                    <li><a href="pages/privacy.html">Политика конфиденциальности</a></li>
+                    <li><a href="pages/faq.html">Помощь</a></li>
+                    <li><a href="pages/contacts.html">Обратная связь</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ТехноДом. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartCount();
+    updateFavCount();
+    initAuth();
+    loadFeaturedProducts();
+    
+    // Мобильное меню
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('nav ul');
+    
+    if (mobileMenuBtn && nav) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            nav.classList.toggle('show');
+            this.classList.toggle('active');
+        });
+        
+        // Закрытие мобильного меню при клике вне его
+        document.addEventListener('click', function(e) {
+            if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                nav.classList.remove('show');
+                mobileMenuBtn.classList.remove('active');
+            }
+        });
+        
+        // Закрытие меню при клике на ссылку
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('show');
+                mobileMenuBtn.classList.remove('active');
+            });
+        });
+    }
+});
+</script>
+</body>
+</html>

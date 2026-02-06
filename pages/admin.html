@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - ТехноДом</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="../index.html">
+                <i class="fas fa-home"></i>
+                <span>ТехноДом</span>
+            </a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="../pages/catalog.html"><i class="fas fa-list"></i> Каталог</a></li>
+                <li><a href="../pages/delivery.html"><i class="fas fa-truck"></i> Доставка</a></li>
+                <li><a href="../pages/contacts.html"><i class="fas fa-phone"></i> Контакты</a></li>
+                <li><a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="../pages/about.html"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="../pages/cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+                <li><a href="../pages/favorites.html"><i class="fas fa-heart"></i> Избранное <span class="fav-count">0</span></a></li>
+                <li><a href="../pages/account.html"><i class="fas fa-user"></i> Кабинет</a></li>
+                <li><a href="../pages/admin.html"><i class="fas fa-cog"></i> Админка</a></li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+<div class="admin-login" id="admin-login">
+    <div class="login-container">
+        <h2>Вход в админ-панель</h2>
+        <form id="login-form" onsubmit="adminLogin(event)">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="admin-email" placeholder="Введите email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" id="admin-password" placeholder="Введите пароль" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="../index.html" style="color: #666; font-size: 0.9rem;">
+                <i class="fas fa-arrow-left"></i> Вернуться на сайт
+            </a>
+        </div>
+        
+<script>
+function simpleLogin() {
+    // Просто показываем админ-панель
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    
+    // Загружаем данные
+    if (typeof loadAdminData === 'function') {
+        loadAdminData();
+    }
+}
+</script>
+    </div>
+</div>
+        
+        <div class="admin-container" id="admin-panel" style="display: none;">
+            <div class="admin-header">
+                <h1><i class="fas fa-cog"></i> Административная панель</h1>
+                <div class="admin-user">
+                    <span id="admin-user-name">Администратор</span>
+                    <button class="btn btn-outline" onclick="logoutAdmin()">Выйти</button>
+                </div>
+            </div>
+            
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="stat-number" id="total-orders-admin">0</div>
+                    <div class="stat-label">Всего заказов</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number" id="total-users">0</div>
+                    <div class="stat-label">Пользователей</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-box"></i>
+                    <div class="stat-number" id="total-products">0</div>
+                    <div class="stat-label">Товаров</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <div class="stat-number" id="total-reviews-admin">0</div>
+                    <div class="stat-label">Отзывов</div>
+                </div>
+            </div>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="products"><i class="fas fa-box"></i> Товары</button>
+                <button class="admin-tab" data-tab="orders"><i class="fas fa-shopping-cart"></i> Заказы</button>
+                <button class="admin-tab" data-tab="users"><i class="fas fa-users"></i> Пользователи</button>
+                <button class="admin-tab" data-tab="reviews"><i class="fas fa-star"></i> Отзывы</button>
+                <button class="admin-tab" data-tab="categories"><i class="fas fa-tags"></i> Категории</button>
+                <button class="admin-tab" data-tab="settings"><i class="fas fa-cog"></i> Настройки</button>
+            </div>
+            
+            <div class="admin-content">
+                <!-- Управление товарами -->
+                <div id="products-tab" class="admin-tab-content active">
+                    <div class="tab-header">
+                        <h2>Управление товарами</h2>
+                        <button class="btn btn-primary" onclick="showAddProductForm()">
+                            <i class="fas fa-plus"></i> Добавить товар
+                        </button>
+                    </div>
+                    
+                    <div class="search-filter">
+                        <input type="text" id="product-search" placeholder="Поиск товаров..." onkeyup="searchProductsAdmin()">
+                        <select id="product-category-filter" onchange="filterProductsAdmin()">
+                            <option value="all">Все категории</option>
+                            <option value="kitchen">Кухонная техника</option>
+                            <option value="cleaning">Уборка</option>
+                            <option value="climate">Климат</option>
+                            <option value="electronics">Электроника</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Изображение</th>
+                                    <th>Название</th>
+                                    <th>Категория</th>
+                                    <th>Цена</th>
+                                    <th>В наличии</th>
+                                    <th>Рейтинг</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-table">
+                                <!-- Товары загружаются через JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Управление заказами -->
+                <div id="orders-tab" class="admin-tab-content">
+                    <div class="tab-header">
+                        <h2>Управление заказами</h2>
+                        <div class="order-stats">
+                            <span class="stat-badge processing" id="processing-orders">0</span>
+                            <span class="stat-badge delivered" id="delivered-orders">0</span>
+                            <span class="stat-badge cancelled" id="cancelled-orders">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="search-filter">
+                        <input type="text" id="order-search" placeholder="Поиск заказов..." onkeyup="searchOrders()">
+                        <select id="order-status-filter-admin" onchange="filterOrders()">
+                            <option value="all">Все статусы</option>
+                            <option value="processing">В обработке</option>
+                            <option value="delivered">Доставленные</option>
+                            <option value="cancelled">Отмененные</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Покупатель</th>
+                                    <th>Дата</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table">
+                                <!-- Заказы загружаются через JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Управление пользователями -->
+                <div id="users-tab" class="admin-tab-content">
+                    <div class="tab-header">
+                        <h2>Управление пользователями</h2>
+                        <button class="btn btn-primary" onclick="showAddUserForm()">
+                            <i class="fas fa-plus"></i> Добавить пользователя
+                        </button>
+                    </div>
+                    
+                    <div class="search-filter">
+                        <input type="text" id="user-search" placeholder="Поиск пользователей..." onkeyup="searchUsers()">
+                        <select id="user-role-filter" onchange="filterUsers()">
+                            <option value="all">Все роли</option>
+                            <option value="user">Пользователи</option>
+                            <option value="admin">Администраторы</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Имя</th>
+                                    <th>Email</th>
+                                    <th>Телефон</th>
+                                    <th>Роль</th>
+                                    <th>Регистрация</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table">
+                                <!-- Пользователи загружаются через JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Управление отзывами -->
+                <div id="reviews-tab" class="admin-tab-content">
+                    <div class="tab-header">
+                        <h2>Управление отзывами</h2>
+                    </div>
+                    
+                    <div class="search-filter">
+                        <input type="text" id="review-search" placeholder="Поиск отзывов..." onkeyup="searchReviews()">
+                        <select id="review-rating-filter" onchange="filterReviews()">
+                            <option value="all">Все оценки</option>
+                            <option value="5">5 звезд</option>
+                            <option value="4">4 звезды</option>
+                            <option value="3">3 звезды</option>
+                            <option value="2">2 звезды</option>
+                            <option value="1">1 звезда</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Товар</th>
+                                    <th>Автор</th>
+                                    <th>Оценка</th>
+                                    <th>Дата</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reviews-table">
+                                <!-- Отзывы загружаются через JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Управление категориями -->
+                <div id="categories-tab" class="admin-tab-content">
+                    <div class="tab-header">
+                        <h2>Управление категориями</h2>
+                        <button class="btn btn-primary" onclick="showAddCategoryForm()">
+                            <i class="fas fa-plus"></i> Добавить категорию
+                        </button>
+                    </div>
+                    
+                    <div class="categories-grid">
+                        <!-- Категории загружаются через JS -->
+                    </div>
+                </div>
+                
+                <!-- Настройки -->
+                <div id="settings-tab" class="admin-tab-content">
+                    <div class="tab-header">
+                        <h2>Настройки магазина</h2>
+                    </div>
+                    
+                    <div class="settings-form-admin">
+                        <div class="form-group">
+                            <label>Название магазина</label>
+                            <input type="text" id="store-name" value="ТехноДом">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email для уведомлений</label>
+                            <input type="email" id="store-email" value="info@technodom.ru">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Телефон поддержки</label>
+                            <input type="tel" id="store-phone" value="8 (800) 123-45-67">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Минимальная сумма для бесплатной доставки</label>
+                            <input type="number" id="free-delivery-threshold" value="20000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Стоимость доставки</label>
+                            <input type="number" id="delivery-cost" value="500">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Время работы</label>
+                            <input type="text" id="working-hours" value="9:00-21:00">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Адрес магазина</label>
+                            <textarea id="store-address" rows="3">Москва, ул. Техническая, 15</textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="saveStoreSettings()">Сохранить настройки</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Модальные окна -->
+        <div id="add-product-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Добавить товар</h3>
+                    <button class="close-btn" onclick="closeAddProduct()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="product-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Название товара *</label>
+                                <input type="text" id="product-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Категория *</label>
+                                <select id="product-category" required>
+                                    <option value="kitchen">Кухонная техника</option>
+                                    <option value="cleaning">Техника для уборки</option>
+                                    <option value="climate">Климатическая техника</option>
+                                    <option value="electronics">Электроника</option>
+                                    <option value="appliances">Крупная бытовая техника</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Цена *</label>
+                                <input type="number" id="product-price" required min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Старая цена</label>
+                                <input type="number" id="product-old-price" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Код товара</label>
+                                <input type="text" id="product-code">
+                            </div>
+                            <div class="form-group">
+                                <label>Количество на складе</label>
+                                <input type="number" id="product-stock" value="10" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Краткое описание</label>
+                            <textarea id="product-description-short" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Полное описание</label>
+                            <textarea id="product-description-full" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>URL изображения</label>
+                            <input type="text" id="product-image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Характеристики (JSON формат)</label>
+                            <textarea id="product-specs" rows="4" placeholder='{"Мощность": "1000 Вт", "Цвет": "Белый"}'></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Сохранить товар</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div id="add-user-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Добавить пользователя</h3>
+                    <button class="close-btn" onclick="closeAddUser()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="user-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Имя *</label>
+                                <input type="text" id="user-name-admin" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" id="user-email-admin" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Телефон</label>
+                                <input type="tel" id="user-phone-admin">
+                            </div>
+                            <div class="form-group">
+                                <label>Роль</label>
+                                <select id="user-role-admin">
+                                    <option value="user">Пользователь</option>
+                                    <option value="admin">Администратор</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Пароль *</label>
+                                <input type="password" id="user-password-admin" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Подтверждение пароля *</label>
+                                <input type="password" id="user-password-confirm-admin" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Создать пользователя</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div id="add-category-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Добавить категорию</h3>
+                    <button class="close-btn" onclick="closeAddCategory()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="category-form">
+                        <div class="form-group">
+                            <label>Название категории *</label>
+                            <input type="text" id="category-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Код категории (латиница) *</label>
+                            <input type="text" id="category-code" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Описание</label>
+                            <textarea id="category-description" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Иконка (Font Awesome класс)</label>
+                            <input type="text" id="category-icon" value="fas fa-blender">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Создать категорию</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>ТехноДом</h3>
+                <p>Магазин качественной бытовой техники с 2010 года</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Покупателям</h3>
+                <ul>
+                    <li><a href="../САЙТ/pages/catalog.html">Каталог</a></li>
+                    <li><a href="../САЙТ/pages/delivery.html">Доставка и оплата</a></li>
+                    <li><a href="../САЙТ/pages/faq.html">Вопросы и ответы</a></li>
+                    <li><a href="../САЙТ/pages/privacy.html">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> 8 (800) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@technodom.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Техническая, 15</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ТехноДом. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница товара - ТехноДом</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="../index.html">
+                <i class="fas fa-home"></i>
+                <span>ТехноДом</span>
+            </a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="../pages/catalog.html"><i class="fas fa-list"></i> Каталог</a></li>
+                <li><a href="../pages/delivery.html"><i class="fas fa-truck"></i> Доставка</a></li>
+                <li><a href="../pages/contacts.html"><i class="fas fa-phone"></i> Контакты</a></li>
+                <li><a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="../pages/about.html"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="../pages/cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+                <li><a href="../pages/favorites.html"><i class="fas fa-heart"></i> Избранное <span class="fav-count">0</span></a></li>
+                <li><a href="../pages/account.html"><i class="fas fa-user"></i> Кабинет</a></li>
+                <li><a href="../pages/admin.html"><i class="fas fa-cog"></i> Админка</a></li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+    <main class="container">
+        <div id="product-details">
+            <!-- Данные товара загружаются через JS -->
+        </div>
+        
+        <div class="product-tabs">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="openTab('description')">Описание</button>
+                <button class="tab-btn" onclick="openTab('specifications')">Характеристики</button>
+                <button class="tab-btn" onclick="openTab('reviews')">Отзывы <span id="reviews-count">0</span></button>
+                <button class="tab-btn" onclick="openTab('delivery')">Доставка и гарантия</button>
+            </div>
+            
+            <div class="tabs-content">
+                <div id="description-tab" class="tab-content active">
+                    <div id="product-description">
+                        <!-- Описание загружается через JS -->
+                    </div>
+                </div>
+                
+                <div id="specifications-tab" class="tab-content">
+                    <div id="product-specs">
+                        <!-- Характеристики загружаются через JS -->
+                    </div>
+                </div>
+                
+                <div id="reviews-tab" class="tab-content">
+                    <div class="reviews-container">
+                        <div class="reviews-header">
+                            <h3>Отзывы о товаре</h3>
+                            <button class="btn btn-primary" onclick="showReviewForm()">Написать отзыв</button>
+                        </div>
+                        
+                        <div class="reviews-stats">
+                            <div class="average-rating">
+                                <h4>Средняя оценка</h4>
+                                <div class="rating-big" id="average-rating">0.0</div>
+                                <div class="stars-big" id="average-stars"></div>
+                                <p>На основе <span id="total-reviews">0</span> отзывов</p>
+                            </div>
+                            
+                            <div class="rating-distribution">
+                                <h4>Распределение оценок</h4>
+                                <div id="rating-bars">
+                                    <!-- Распределение оценок -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="reviews-list">
+                            <!-- Список отзывов -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="delivery-tab" class="tab-content">
+                    <h3>Доставка и гарантия</h3>
+                    <div class="delivery-info">
+                        <div class="info-card">
+                            <i class="fas fa-truck"></i>
+                            <h4>Доставка</h4>
+                            <p>Бесплатная доставка по Москве в течение 2 дней. По России - от 3 до 7 дней.</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Гарантия</h4>
+                            <p>Официальная гарантия 24 месяца. Сервисные центры по всей России.</p>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-undo"></i>
+                            <h4>Возврат</h4>
+                            <p>Возврат товара в течение 14 дней без объяснения причин.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Форма отзыва (скрыта по умолчанию) -->
+        <div id="review-form-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Написать отзыв</h3>
+                    <button class="close-btn" onclick="closeReviewForm()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="review-form">
+                        <div class="form-group">
+                            <label>Ваше имя *</label>
+                            <input type="text" id="review-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="review-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Оценка *</label>
+                            <div class="rating-input">
+                                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                            <input type="hidden" id="review-rating" value="5">
+                        </div>
+                        <div class="form-group">
+                            <label>Заголовок отзыва *</label>
+                            <input type="text" id="review-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Текст отзыва *</label>
+                            <textarea id="review-text" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Достоинства</label>
+                            <textarea id="review-pros" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Недостатки</label>
+                            <textarea id="review-cons" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>ТехноДом</h3>
+                <p>Магазин качественной бытовой техники с 2010 года</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Покупателям</h3>
+                <ul>
+                    <li><a href="../САЙТ/pages/catalog.html">Каталог</a></li>
+                    <li><a href="../САЙТ/pages/delivery.html">Доставка и оплата</a></li>
+                    <li><a href="../САЙТ/pages/faq.html">Вопросы и ответы</a></li>
+                    <li><a href="../САЙТ/pages/privacy.html">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> 8 (800) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@technodom.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Техническая, 15</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ТехноДом. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        let currentProductId = null;
+        let currentProduct = null;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получение ID товара из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            currentProductId = parseInt(urlParams.get('id')) || 1;
+            
+            loadProductDetails();
+            updateCartCount();
+            updateFavCount();
+            
+            // Мобильное меню
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('show');
+            });
+            
+            // Инициализация звезд рейтинга в форме
+            initRatingStars();
+            
+            // Обработка формы отзыва
+            document.getElementById('review-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitReview();
+            });
+        });
+        
+        function loadProductDetails() {
+            const products = JSON.parse(localStorage.getItem('products')) || getDefaultProducts();
+            currentProduct = products.find(p => p.id === currentProductId) || products[0];
+            
+            if (!currentProduct) return;
+            
+            // Загрузка данных товара
+            document.getElementById('product-details').innerHTML = `
+                <div class="product-detail-container">
+                    <div class="product-gallery">
+                        <div class="main-image">
+                            <img src="${currentProduct.image}" alt="${currentProduct.name}" id="main-product-image">
+                        </div>
+                    </div>
+                    <div class="product-info-detail">
+                        <h1>${currentProduct.name}</h1>
+                        <div class="product-meta">
+                            <div class="product-rating-large">
+                                ${getRatingStars(currentProduct.rating)}
+                                <span>${currentProduct.rating}/5 (${currentProduct.reviews} отзывов)</span>
+                            </div>
+                            <div class="product-code">Код товара: ${currentProduct.code}</div>
+                            <div class="product-availability ${currentProduct.inStock ? 'in-stock' : 'out-of-stock'}">
+                                <i class="fas ${currentProduct.inStock ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                                ${currentProduct.inStock ? 'В наличии' : 'Нет в наличии'}
+                            </div>
+                        </div>
+                        
+                        <div class="product-price-detail">
+                            ${currentProduct.oldPrice ? `
+                                <div class="price-old">${currentProduct.oldPrice.toLocaleString()} ₽</div>
+                                <div class="price-discount">-${Math.round((1 - currentProduct.price/currentProduct.oldPrice)*100)}%</div>
+                            ` : ''}
+                            <div class="price-current">${currentProduct.price.toLocaleString()} ₽</div>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-lg" onclick="addToCart(${currentProduct.id})" ${!currentProduct.inStock ? 'disabled' : ''}>
+                                <i class="fas fa-shopping-cart"></i> ${currentProduct.inStock ? 'Добавить в корзину' : 'Нет в наличии'}
+                            </button>
+                            <button class="btn btn-outline ${isFavorite(currentProduct.id) ? 'active' : ''}" onclick="toggleFavorite(${currentProduct.id})">
+                                <i class="fas fa-heart"></i> ${isFavorite(currentProduct.id) ? 'В избранном' : 'В избранное'}
+                            </button>
+                        </div>
+                        
+                        <div class="product-features">
+                            <div class="feature">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Бесплатная доставка от 20 000 ₽</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Гарантия 24 месяца</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Рассрочка 0% на 12 месяцев</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Загрузка описания
+            document.getElementById('product-description').innerHTML = `
+                <h3>Описание товара</h3>
+                <p>${currentProduct.fullDescription || currentProduct.description}</p>
+                <h4>Основные особенности:</h4>
+                <ul>
+                    ${currentProduct.features ? currentProduct.features.map(f => `<li>${f}</li>`).join('') : ''}
+                </ul>
+            `;
+            
+            // Загрузка характеристик
+            document.getElementById('product-specs').innerHTML = `
+                <h3>Технические характеристики</h3>
+                <table class="specs-table">
+                    ${currentProduct.specifications ? Object.entries(currentProduct.specifications).map(([key, value]) => `
+                        <tr>
+                            <td>${key}</td>
+                            <td>${value}</td>
+                        </tr>
+                    `).join('') : '<tr><td colspan="2">Характеристики не указаны</td></tr>'}
+                </table>
+            `;
+            
+            // Загрузка отзывов
+            loadProductReviews();
+        }
+        
+        function loadProductReviews() {
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            const productReviews = reviews.filter(r => r.productId === currentProductId);
+            
+            // Обновление счетчика
+            document.getElementById('reviews-count').textContent = productReviews.length;
+            document.getElementById('total-reviews').textContent = productReviews.length;
+            
+            // Расчет среднего рейтинга
+            const averageRating = productReviews.length > 0 
+                ? productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length
+                : 0;
+            
+            document.getElementById('average-rating').textContent = averageRating.toFixed(1);
+            document.getElementById('average-stars').innerHTML = getRatingStars(averageRating);
+            
+            // Распределение оценок
+            const ratingCounts = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0};
+            productReviews.forEach(r => ratingCounts[r.rating]++);
+            
+            document.getElementById('rating-bars').innerHTML = Object.entries(ratingCounts).reverse().map(([rating, count]) => `
+                <div class="rating-bar">
+                    <span>${rating} звезд</span>
+                    <div class="bar-container">
+                        <div class="bar" style="width: ${(count / productReviews.length) * 100 || 0}%"></div>
+                    </div>
+                    <span>${count}</span>
+                </div>
+            `).join('');
+            
+            // Список отзывов
+            document.getElementById('reviews-list').innerHTML = productReviews.length > 0 
+                ? productReviews.map(review => `
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="review-author">${review.author}</div>
+                            <div class="review-date">${review.date}</div>
+                        </div>
+                        <div class="review-rating">${getRatingStars(review.rating)}</div>
+                        <div class="review-title">${review.title}</div>
+                        <div class="review-text">${review.text}</div>
+                        ${review.pros ? `<div class="review-pros"><strong>Достоинства:</strong> ${review.pros}</div>` : ''}
+                        ${review.cons ? `<div class="review-cons"><strong>Недостатки:</strong> ${review.cons}</div>` : ''}
+                    </div>
+                `).join('')
+                : '<p class="no-reviews">Пока нет отзывов. Будьте первым!</p>';
+        }
+        
+        function initRatingStars() {
+            const stars = document.querySelectorAll('.rating-input .star');
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-value'));
+                    document.getElementById('review-rating').value = rating;
+                    
+                    stars.forEach(s => {
+                        const value = parseInt(s.getAttribute('data-value'));
+                        const icon = s.querySelector('i');
+                        icon.className = value <= rating ? 'fas fa-star' : 'far fa-star';
+                    });
+                });
+            });
+        }
+        
+        function showReviewForm() {
+            document.getElementById('review-form-modal').style.display = 'block';
+        }
+        
+        function closeReviewForm() {
+            document.getElementById('review-form-modal').style.display = 'none';
+            document.getElementById('review-form').reset();
+            
+            // Сброс звезд
+            const stars = document.querySelectorAll('.rating-input .star');
+            stars.forEach(star => {
+                const icon = star.querySelector('i');
+                icon.className = 'far fa-star';
+            });
+            document.getElementById('review-rating').value = 5;
+        }
+        
+        function submitReview() {
+            const review = {
+                id: Date.now(),
+                productId: currentProductId,
+                author: document.getElementById('review-name').value,
+                email: document.getElementById('review-email').value,
+                rating: parseInt(document.getElementById('review-rating').value),
+                title: document.getElementById('review-title').value,
+                text: document.getElementById('review-text').value,
+                pros: document.getElementById('review-pros').value,
+                cons: document.getElementById('review-cons').value,
+                date: new Date().toLocaleDateString('ru-RU')
+            };
+            
+            // Сохранение отзыва
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push(review);
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            
+            // Обновление количества отзывов у товара
+            const products = JSON.parse(localStorage.getItem('products')) || getDefaultProducts();
+            const productIndex = products.findIndex(p => p.id === currentProductId);
+            if (productIndex !== -1) {
+                products[productIndex].reviews += 1;
+                // Пересчет рейтинга
+                const productReviews = reviews.filter(r => r.productId === currentProductId);
+                products[productIndex].rating = productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length;
+                localStorage.setItem('products', JSON.stringify(products));
+            }
+            
+            // Закрытие формы и обновление
+            closeReviewForm();
+            loadProductDetails();
+            alert('Спасибо за ваш отзыв!');
+        }
+        
+        function openTab(tabName) {
+            // Скрыть все вкладки
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Убрать активный класс у всех кнопок
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Показать выбранную вкладку
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Активировать соответствующую кнопку
+            event.target.classList.add('active');
+        }
+        
+        function getRatingStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i - 0.5 <= rating) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+    </script>
+</body>
+</html>

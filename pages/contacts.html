@@ -1,0 +1,713 @@
+[file name]: contacts.html
+[file content begin]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - ТехноДом</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Контакты - основные стили */
+        .contacts-header {
+            text-align: center;
+            margin: 40px 0 50px;
+            padding: 40px 0;
+        }
+        
+        .contacts-header h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .contacts-header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e8f4fd;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .contact-card i {
+            font-size: 2.8rem;
+            color: #3498db;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .contact-card h3 {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .contact-card p {
+            color: #34495e;
+            font-size: 1.1rem;
+            margin: 8px 0;
+        }
+        
+        .contact-sub {
+            color: #7f8c8d !important;
+            font-size: 0.95rem !important;
+            margin: 5px 0 !important;
+        }
+        
+        .contact-hours {
+            color: #27ae60 !important;
+            font-weight: 500;
+            font-size: 0.9rem !important;
+            margin-top: 15px !important;
+            padding-top: 10px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .contact-form-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 60px;
+            border: 1px solid #e8f4fd;
+        }
+        
+        .contact-form-section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            font-weight: 600;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+            background: linear-gradient(135deg, #2980b9, #1a5276);
+        }
+        
+        .map-section {
+            margin-bottom: 60px;
+        }
+        
+        .map-section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .map-container {
+            margin-top: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        
+        .map-placeholder {
+            background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #3498db;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%233498db" opacity="0.05"/></svg>');
+        }
+        
+        .map-placeholder i {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            z-index: 1;
+        }
+        
+        .map-placeholder p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            z-index: 1;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .faq-preview {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .faq-preview h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        
+        .faq-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: left;
+            border: 1px solid #e8f4fd;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .faq-item h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .faq-item p {
+            color: #34495e;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        
+        .btn-outline {
+            display: inline-block;
+            padding: 14px 35px;
+            border: 2px solid #3498db;
+            color: #3498db;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            background: white;
+        }
+        
+        .btn-outline:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .contacts-header {
+                padding: 30px 0;
+                margin: 20px 0 40px;
+            }
+            
+            .contacts-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contacts-header p {
+                font-size: 1.1rem;
+                padding: 0 15px;
+            }
+            
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .contact-form-section {
+                padding: 25px;
+            }
+            
+            .map-placeholder {
+                height: 300px;
+            }
+            
+            .map-placeholder i {
+                font-size: 3.5rem;
+            }
+            
+            .map-placeholder p {
+                font-size: 1rem;
+            }
+            
+            .faq-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-item {
+                padding: 25px;
+            }
+            
+            .btn-primary {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .btn-outline {
+                padding: 12px 30px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contacts-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contacts-header p {
+                font-size: 1rem;
+            }
+            
+            .contact-card {
+                padding: 25px 20px;
+            }
+            
+            .contact-card i {
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                font-size: 2.5rem;
+            }
+            
+            .contact-form-section {
+                padding: 20px 15px;
+            }
+            
+            .contact-form-section h2,
+            .map-section h2,
+            .faq-preview h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="../index.html">
+                <i class="fas fa-home"></i>
+                <span>ТехноДом</span>
+            </a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="../pages/catalog.html"><i class="fas fa-list"></i> Каталог</a></li>
+                <li><a href="../pages/delivery.html"><i class="fas fa-truck"></i> Доставка</a></li>
+                <li><a href="../pages/contacts.html" class="active"><i class="fas fa-phone"></i> Контакты</a></li>
+                <li><a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="../pages/about.html"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="../pages/cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+                <li><a href="../pages/favorites.html"><i class="fas fa-heart"></i> Избранное <span class="fav-count">0</span></a></li>
+                <li><a href="../pages/account.html"><i class="fas fa-user"></i> Кабинет</a></li>
+                <li><a href="../pages/admin.html"><i class="fas fa-cog"></i> Админка</a></li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+    <main class="container">
+        <div class="contacts-header">
+            <h1>Контакты</h1>
+            <p>Свяжитесь с нами любым удобным способом</p>
+        </div>
+        
+        <div class="contact-info-grid">
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h3>Телефон</h3>
+                <p>8 (800) 123-45-67</p>
+                <p class="contact-sub">Бесплатно по России</p>
+                <p class="contact-hours">Ежедневно с 9:00 до 21:00</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>info@technodom.ru</p>
+                <p class="contact-sub">Для общих вопросов</p>
+                <p class="contact-hours">Ответ в течение 2 часов</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Офис и склад</h3>
+                <p>Москва, ул. Техническая, 15</p>
+                <p class="contact-sub">Пункт самовывоза</p>
+                <p class="contact-hours">Пн-Пт: 9:00-18:00</p>
+            </div>
+        </div>
+        
+        <div class="contact-form-section">
+            <h2>Форма обратной связи</h2>
+            <form id="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ваше имя *</label>
+                        <input type="text" id="contact-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="contact-email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Тема сообщения</label>
+                    <select id="contact-subject">
+                        <option value="question">Вопрос о товаре</option>
+                        <option value="order">Вопрос по заказу</option>
+                        <option value="delivery">Доставка</option>
+                        <option value="warranty">Гарантия и ремонт</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Сообщение *</label>
+                    <textarea id="contact-message" rows="6" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">Отправить сообщение</button>
+            </form>
+        </div>
+        
+        <div class="map-section">
+            <h2>Как нас найти</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p>Здесь будет карта с нашим расположением</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-preview">
+            <h2>Частые вопросы</h2>
+            <div class="faq-items">
+                <div class="faq-item">
+                    <h3>Какой график работы?</h3>
+                    <p>Наш колл-центр работает ежедневно с 9:00 до 21:00. Офис и пункт самовывоза - с понедельника по пятницу с 9:00 до 18:00.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Есть ли доставка в другие города?</h3>
+                    <p>Да, мы осуществляем доставку по всей России через транспортные компании. Срок доставки зависит от региона и составляет от 3 до 14 дней.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Можно ли приехать посмотреть товар?</h3>
+                    <p>Да, у нас есть выставочный зал по адресу: Москва, ул. Техническая, 15. Работает с понедельника по пятницу с 9:00 до 18:00.</p>
+                </div>
+            </div>
+            <a href="../pages/faq.html" class="btn-outline">Все вопросы и ответы</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>ТехноДом</h3>
+                <p>Магазин качественной бытовой техники с 2010 года</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Покупателям</h3>
+                <ul>
+                    <li><a href="../pages/catalog.html">Каталог</a></li>
+                    <li><a href="../pages/delivery.html">Доставка и оплата</a></li>
+                    <li><a href="../pages/faq.html">Вопросы и ответы</a></li>
+                    <li><a href="../pages/contacts.html">Контакты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> 8 (800) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@technodom.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Техническая, 15</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ТехноДом. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            updateFavCount();
+            checkAuth();
+            
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('show');
+            });
+            
+            // Обработка формы контактов
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('contact-name').value;
+                const email = document.getElementById('contact-email').value;
+                const subject = document.getElementById('contact-subject').value;
+                const message = document.getElementById('contact-message').value;
+                
+                // В реальном проекте здесь была бы отправка на сервер
+                // Сохраняем сообщение в localStorage для демонстрации
+                const contactMessage = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    date: new Date().toISOString(),
+                    status: 'new'
+                };
+                
+                let contactMessages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+                contactMessages.push(contactMessage);
+                localStorage.setItem('contactMessages', JSON.stringify(contactMessages));
+                
+                // Показываем уведомление
+                showNotification('Спасибо за ваше сообщение! Мы ответим вам в ближайшее время.', 'success');
+                
+                // Сбрасываем форму
+                this.reset();
+            });
+        });
+        
+        function checkAuth() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser) {
+                // Обновляем навигацию если нужно
+            }
+        }
+        
+        function showNotification(message, type = 'info') {
+            // Создаем элемент уведомления
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">&times;</button>
+            `;
+            
+            // Стили для уведомления
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 8px;
+                color: white;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                min-width: 300px;
+                max-width: 400px;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                font-family: inherit;
+            `;
+            
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #27ae60, #219653)';
+            } else if (type === 'error') {
+                notification.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #3498db, #2980b9)';
+            }
+            
+            notification.querySelector('button').style.cssText = `
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                margin-left: 15px;
+                padding: 0;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: background 0.3s;
+            `;
+            
+            notification.querySelector('button').addEventListener('mouseover', function() {
+                this.style.background = 'rgba(255,255,255,0.2)';
+            });
+            
+            notification.querySelector('button').addEventListener('mouseout', function() {
+                this.style.background = 'none';
+            });
+            
+            // Добавляем на страницу
+            document.body.appendChild(notification);
+            
+            // Автоматическое удаление через 5 секунд
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+            
+            // Анимация появления
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+</html>
+[file content end]

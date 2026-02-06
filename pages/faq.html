@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Частые вопросы - ТехноДом</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="../index.html">
+                <i class="fas fa-home"></i>
+                <span>ТехноДом</span>
+            </a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="../pages/catalog.html"><i class="fas fa-list"></i> Каталог</a></li>
+                <li><a href="../pages/delivery.html"><i class="fas fa-truck"></i> Доставка</a></li>
+                <li><a href="../pages/contacts.html"><i class="fas fa-phone"></i> Контакты</a></li>
+                <li><a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="../pages/about.html"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="../pages/cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+                <li><a href="../pages/favorites.html"><i class="fas fa-heart"></i> Избранное <span class="fav-count">0</span></a></li>
+                <li><a href="../pages/account.html"><i class="fas fa-user"></i> Кабинет</a></li>
+                <li><a href="../pages/admin.html"><i class="fas fa-cog"></i> Админка</a></li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+    <main class="container">
+        <div class="faq-header">
+            <h1>Часто задаваемые вопросы</h1>
+            <p>Найдите ответы на самые популярные вопросы</p>
+        </div>
+        
+        <div class="faq-search">
+            <input type="text" id="faq-search-input" placeholder="Поиск по вопросам...">
+            <button id="faq-search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="faq-categories">
+            <button class="faq-category-btn active" data-category="all">Все вопросы</button>
+            <button class="faq-category-btn" data-category="delivery">Доставка и оплата</button>
+            <button class="faq-category-btn" data-category="products">Товары и заказы</button>
+            <button class="faq-category-btn" data-category="warranty">Гарантия и возврат</button>
+            <button class="faq-category-btn" data-category="account">Аккаунт и профиль</button>
+        </div>
+        
+        <div class="faq-container">
+            <!-- Доставка и оплата -->
+            <div class="faq-section" data-category="delivery">
+                <h2><i class="fas fa-truck"></i> Доставка и оплата</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как осуществляется доставка?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы осуществляем доставку по всей России несколькими способами:</p>
+                        <ul>
+                            <li><strong>Курьерская доставка по Москве</strong> - в течение 1-2 рабочих дней</li>
+                            <li><strong>Доставка по России</strong> - через транспортные компании (3-7 дней)</li>
+                            <li><strong>Самовывоз</strong> - из наших пунктов выдачи в Москве</li>
+                        </ul>
+                        <p>Подробнее в разделе <a href="../pages/delivery.html">Доставка и оплата</a>.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Сколько стоит доставка?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Стоимость доставки зависит от региона и суммы заказа:</p>
+                        <ul>
+                            <li>По Москве: бесплатно при заказе от 20 000 ₽, 500 ₽ при заказе до 20 000 ₽</li>
+                            <li>По России: рассчитывается индивидуально, от 500 ₽</li>
+                            <li>Самовывоз: бесплатно</li>
+                        </ul>
+                        <p>Точную стоимость доставки вы увидите при оформлении заказа.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Какие способы оплаты доступны?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы принимаем следующие способы оплаты:</p>
+                        <ul>
+                            <li>Банковские карты (Visa, Mastercard, МИР)</li>
+                            <li>Наличные курьеру (только для Москвы)</li>
+                            <li>Онлайн-банкинг</li>
+                            <li>Рассрочка 0% на 12 месяцев</li>
+                            <li>Банковский перевод для юридических лиц</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Можно ли изменить адрес доставки после оформления заказа?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, вы можете изменить адрес доставки до момента отправки заказа со склада. Для этого:</p>
+                        <ol>
+                            <li>Позвоните нам по телефону 8 (800) 123-45-67</li>
+                            <li>Или напишите на delivery@technodom.ru</li>
+                            <li>Укажите номер заказа и новый адрес доставки</li>
+                        </ol>
+                        <p>После отправки заказа изменение адреса может быть невозможно или потребует дополнительной оплаты.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Товары и заказы -->
+            <div class="faq-section" data-category="products">
+                <h2><i class="fas fa-box"></i> Товары и заказы</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как отследить статус моего заказа?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Отследить статус заказа можно несколькими способами:</p>
+                        <ul>
+                            <li>В <a href="../pages/account.html#orders">личном кабинете</a> во вкладке "Мои заказы"</li>
+                            <li>По номеру заказа на странице отслеживания</li>
+                            <li>По телефону 8 (800) 123-45-67</li>
+                            <li>По email - мы отправляем уведомления на каждом этапе</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Что делать, если товара нет в наличии?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Если товара нет в наличии:</p>
+                        <ul>
+                            <li>Вы можете оставить заявку на уведомление о поступлении</li>
+                            <li>Наши менеджеры свяжутся с вами, когда товар появится на складе</li>
+                            <li>Мы можем предложить аналогичный товар с похожими характеристиками</li>
+                            <li>Сроки поступления товара обычно составляют 7-14 дней</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Могу ли я отменить или изменить заказ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, вы можете отменить или изменить заказ до его отправки:</p>
+                        <ul>
+                            <li><strong>Отмена заказа:</strong> в любое время до отправки</li>
+                            <li><strong>Изменение состава заказа:</strong> до начала сборки</li>
+                            <li><strong>Добавление товаров:</strong> возможно оформить новый заказ</li>
+                        </ul>
+                        <p>Для отмены или изменения заказа позвоните нам по телефону 8 (800) 123-45-67 или напишите на info@technodom.ru, указав номер заказа.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как узнать характеристики товара?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Полные характеристики каждого товара доступны:</p>
+                        <ul>
+                            <li>На странице товара во вкладке "Характеристики"</li>
+                            <li>В технической документации (скачивается на странице товара)</li>
+                            <li>У наших консультантов по телефону 8 (800) 123-45-67</li>
+                            <li>В отзывах других покупателей</li>
+                        </ul>
+                        <p>Если вы не нашли нужную информацию, задайте вопрос через форму на странице товара.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Гарантия и возврат -->
+            <div class="faq-section" data-category="warranty">
+                <h2><i class="fas fa-shield-alt"></i> Гарантия и возврат</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Какой срок гарантии на товары?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>На все товары действует официальная гарантия производителя:</p>
+                        <ul>
+                            <li><strong>Бытовая техника:</strong> 24 месяца</li>
+                            <li><strong>Электроника:</strong> 12 месяцев</li>
+                            <li><strong>Аксессуары:</strong> 6 месяцев</li>
+                        </ul>
+                        <p>Гарантийный талон и чек необходимо сохранять. Гарантия не распространяется на повреждения, вызванные неправильной эксплуатацией.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как вернуть товар?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Вы можете вернуть товар в течение 14 дней с момента получения:</p>
+                        <ol>
+                            <li>Товар должен быть в оригинальной упаковке со всеми комплектующими</li>
+                            <li>На товаре не должно быть следов использования</li>
+                            <li>Сохраните все документы: чек, гарантийный талон</li>
+                            <li>Напишите заявление на возврат</li>
+                        </ol>
+                        <p>Для инициализации возврата позвоните нам по телефону 8 (800) 123-45-67.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Что делать, если товар неисправен?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Если товар оказался неисправен:</p>
+                        <ol>
+                            <li>Немедленно прекратите использование</li>
+                            <li>Свяжитесь с нами по телефону 8 (800) 123-45-67</li>
+                            <li>Предоставьте фото/видео неисправности</li>
+                            <li>Сохраните все документы и упаковку</li>
+                        </ol>
+                        <p>Мы организуем выезд мастера для диагностики или заберем товар на проверку в сервисный центр.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Где находятся сервисные центры?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>У нас есть сеть авторизованных сервисных центров:</p>
+                        <ul>
+                            <li><strong>Москва:</strong> 5 центров в разных районах</li>
+                            <li><strong>Санкт-Петербург:</strong> 3 центра</li>
+                            <li><strong>Другие города:</strong> более 50 центров по всей России</li>
+                        </ul>
+                        <p>Адрес ближайшего сервисного центра вы можете узнать по телефону 8 (800) 123-45-67 или в личном кабинете после регистрации гарантии.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Аккаунт и профиль -->
+            <div class="faq-section" data-category="account">
+                <h2><i class="fas fa-user"></i> Аккаунт и профиль</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как зарегистрироваться на сайте?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Регистрация на сайте очень проста:</p>
+                        <ol>
+                            <li>Нажмите кнопку "Кабинет" в верхнем меню</li>
+                            <li>Выберите "Зарегистрироваться"</li>
+                            <li>Заполните форму: email, пароль, имя</li>
+                            <li>Подтвердите регистрацию по ссылке в email</li>
+                        </ol>
+                        <p>После регистрации вы получите доступ к личному кабинету, истории заказов и сможете оставлять отзывы.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Что делать, если я забыл пароль?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Если вы забыли пароль:</p>
+                        <ol>
+                            <li>На странице входа нажмите "Забыли пароль?"</li>
+                            <li>Введите email, указанный при регистрации</li>
+                            <li>Проверьте почту - мы отправим ссылку для восстановления</li>
+                            <li>Перейдите по ссылке и создайте новый пароль</li>
+                        </ol>
+                        <p>Если email недоступен, свяжитесь с нами по телефону 8 (800) 123-45-67.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как изменить данные в профиле?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Изменить данные профиля можно в личном кабинете:</p>
+                        <ol>
+                            <li>Зайдите в <a href="../pages/account.html">личный кабинет</a></li>
+                            <li>Выберите вкладку "Профиль"</li>
+                            <li>Нажмите кнопку "Редактировать"</li>
+                            <li>Внесите необходимые изменения</li>
+                            <li>Сохраните изменения</li>
+                        </ol>
+                        <p>Вы можете изменить имя, email, телефон, пароль и настройки уведомлений.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как оставить отзыв о товаре?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Оставить отзыв может только зарегистрированный пользователь, который приобрел товар:</p>
+                        <ol>
+                            <li>Зайдите на страницу товара</li>
+                            <li>Перейдите на вкладку "Отзывы"</li>
+                            <li>Нажмите кнопку "Написать отзыв"</li>
+                            <li>Заполните форму: оценка, текст, достоинства/недостатки</li>
+                            <li>Нажмите "Отправить отзыв"</li>
+                        </ol>
+                        <p>Все отзывы проходят модерацию. После проверки отзыв появится на сайте.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="faq-contact">
+            <h2>Не нашли ответ на свой вопрос?</h2>
+            <div class="contact-options">
+                <div class="contact-option">
+                    <i class="fas fa-phone"></i>
+                    <h3>Позвоните нам</h3>
+                    <p>8 (800) 123-45-67</p>
+                    <p>Ежедневно с 9:00 до 21:00</p>
+                </div>
+                
+                <div class="contact-option">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Напишите email</h3>
+                    <p>support@technodom.ru</p>
+                    <p>Ответим в течение 2 часов</p>
+                </div>
+                
+                <div class="contact-option">
+                    <i class="fas fa-comments"></i>
+                    <h3>Онлайн-чат</h3>
+                    <p>Круглосуточная поддержка</p>
+                    <button class="btn btn-primary" onclick="openChat()">Начать диалог</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>ТехноДом</h3>
+                <p>Магазин качественной бытовой техники с 2010 года</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Покупателям</h3>
+                <ul>
+                    <li><a href="../САЙТ/pages/catalog.html">Каталог</a></li>
+                    <li><a href="../САЙТ/pages/delivery.html">Доставка и оплата</a></li>
+                    <li><a href="../САЙТ/pages/faq.html">Вопросы и ответы</a></li>
+                    <li><a href="../САЙТ/pages/privacy.html">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> 8 (800) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@technodom.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Техническая, 15</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ТехноДом. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            updateFavCount();
+            
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('show');
+            });
+            
+            // Инициализация FAQ
+            initFAQ();
+            
+            // Поиск по FAQ
+            document.getElementById('faq-search-btn').addEventListener('click', searchFAQ);
+            document.getElementById('faq-search-input').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') searchFAQ();
+            });
+            
+            // Фильтрация по категориям
+            document.querySelectorAll('.faq-category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    filterFAQByCategory(category);
+                    
+                    // Обновление активной кнопки
+                    document.querySelectorAll('.faq-category-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+        
+        function initFAQ() {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('faq-question')) return;
+                    this.classList.toggle('active');
+                });
+            });
+        }
+        
+        function toggleFAQ(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+        
+        function searchFAQ() {
+            const searchTerm = document.getElementById('faq-search-input').value.toLowerCase();
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    // Раскрываем найденный вопрос
+                    if (searchTerm && !item.classList.contains('active')) {
+                        item.classList.add('active');
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Показываем/скрываем разделы
+            document.querySelectorAll('.faq-section').forEach(section => {
+                const visibleItems = section.querySelectorAll('.faq-item[style="display: block"]').length;
+                section.style.display = visibleItems > 0 ? 'block' : 'none';
+            });
+        }
+        
+        function filterFAQByCategory(category) {
+            document.querySelectorAll('.faq-section').forEach(section => {
+                if (category === 'all' || section.getAttribute('data-category') === category) {
+                    section.style.display = 'block';
+                    section.querySelectorAll('.faq-item').forEach(item => {
+                        item.style.display = 'block';
+                    });
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+        
+        function openChat() {
+            alert('Онлайн-чат откроется в новом окне. В реальном проекте здесь будет интеграция с чат-виджетом.');
+        }
+        
+        // Стили для FAQ
+        const style = document.createElement('style');
+        style.textContent = `
+            .faq-header {
+                text-align: center;
+                margin-bottom: 40px;
+                padding: 40px 0;
+                background: linear-gradient(135deg, var(--secondary), #2980b9);
+                color: white;
+                border-radius: var(--border-radius);
+            }
+            
+            .faq-search {
+                display: flex;
+                max-width: 600px;
+                margin: 0 auto 40px;
+            }
+            
+            .faq-search input {
+                flex: 1;
+                padding: 15px 20px;
+                border: 2px solid var(--secondary);
+                border-radius: var(--border-radius) 0 0 var(--border-radius);
+                font-size: 1rem;
+            }
+            
+            .faq-search button {
+                padding: 15px 25px;
+                background: var(--secondary);
+                color: white;
+                border: none;
+                border-radius: 0 var(--border-radius) var(--border-radius) 0;
+                cursor: pointer;
+                font-size: 1.1rem;
+            }
+            
+            .faq-categories {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 40px;
+            }
+            
+            .faq-category-btn {
+                padding: 12px 24px;
+                background: white;
+                border: 2px solid var(--light);
+                border-radius: var(--border-radius);
+                cursor: pointer;
+                font-weight: 500;
+                transition: var(--transition);
+            }
+            
+            .faq-category-btn:hover,
+            .faq-category-btn.active {
+                background: var(--secondary);
+                color: white;
+                border-color: var(--secondary);
+            }
+            
+            .faq-section {
+                margin-bottom: 50px;
+            }
+            
+            .faq-section h2 {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 30px;
+                color: var(--dark);
+                padding-bottom: 15px;
+                border-bottom: 2px solid var(--light);
+            }
+            
+            .faq-section h2 i {
+                color: var(--secondary);
+            }
+            
+            .faq-item {
+                background: white;
+                margin-bottom: 15px;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                overflow: hidden;
+                transition: var(--transition);
+            }
+            
+            .faq-item:hover {
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .faq-question {
+                padding: 20px 30px;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--dark);
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                transition: var(--transition);
+                background: var(--light-gray);
+            }
+            
+            .faq-question:hover {
+                background: #e8f4fc;
+            }
+            
+            .faq-question i {
+                transition: var(--transition);
+                color: var(--secondary);
+            }
+            
+            .faq-item.active .faq-question i {
+                transform: rotate(180deg);
+            }
+            
+            .faq-answer {
+                padding: 0 30px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 20px 30px;
+                max-height: 1000px;
+            }
+            
+            .faq-answer ul, .faq-answer ol {
+                margin: 15px 0;
+                padding-left: 20px;
+            }
+            
+            .faq-answer li {
+                margin-bottom: 10px;
+                line-height: 1.6;
+            }
+            
+            .faq-answer a {
+                color: var(--secondary);
+                text-decoration: none;
+            }
+            
+            .faq-answer a:hover {
+                text-decoration: underline;
+            }
+            
+            .faq-contact {
+                margin: 60px 0;
+                padding: 40px;
+                background: linear-gradient(135deg, var(--primary), #1a2530);
+                color: white;
+                border-radius: var(--border-radius);
+                text-align: center;
+            }
+            
+            .contact-options {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+            }
+            
+            .contact-option {
+                background: rgba(255,255,255,0.1);
+                padding: 30px;
+                border-radius: var(--border-radius);
+                backdrop-filter: blur(10px);
+            }
+            
+            .contact-option i {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                color: var(--secondary);
+            }
+            
+            .contact-option h3 {
+                margin-bottom: 15px;
+            }
+            
+            @media (max-width: 768px) {
+                .faq-categories {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+                
+                .faq-category-btn {
+                    text-align: center;
+                }
+                
+                .contact-options {
+                    grid-template-columns: 1fr;
+                }
+                
+                .faq-question {
+                    padding: 15px 20px;
+                    font-size: 1rem;
+                }
+                
+                .faq-answer {
+                    padding: 0 20px;
+                }
+                
+                .faq-item.active .faq-answer {
+                    padding: 15px 20px;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

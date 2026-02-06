@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доставка и оплата - ТехноДом</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Дополнительные стили для delivery.html */
+        .delivery-header {
+            text-align: center;
+            margin: 40px 0 60px;
+        }
+        
+        .delivery-header h1 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .delivery-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <a href="../index.html">
+                <i class="fas fa-home"></i>
+                <span>ТехноДом</span>
+            </a>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="../pages/catalog.html"><i class="fas fa-list"></i> Каталог</a></li>
+                <li><a href="../pages/delivery.html"><i class="fas fa-truck"></i> Доставка</a></li>
+                <li><a href="../pages/contacts.html"><i class="fas fa-phone"></i> Контакты</a></li>
+                <li><a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="../pages/about.html"><i class="fas fa-info-circle"></i> О нас</a></li>
+                <li><a href="../pages/cart.html"><i class="fas fa-shopping-cart"></i> Корзина <span class="cart-count">0</span></a></li>
+                <li><a href="../pages/favorites.html"><i class="fas fa-heart"></i> Избранное <span class="fav-count">0</span></a></li>
+                <li><a href="../pages/account.html"><i class="fas fa-user"></i> Кабинет</a></li>
+                <li><a href="../pages/admin.html"><i class="fas fa-cog"></i> Админка</a></li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+    <main class="container">
+        <div class="delivery-header">
+            <h1>Доставка и оплата</h1>
+            <p>Удобные способы получения заказов и оплаты</p>
+        </div>
+        
+        <div class="delivery-timeline">
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>1. Оформление заказа</h3>
+                    <p>Выберите товары, добавьте их в корзину и оформите заказ. Укажите адрес доставки и контактные данные.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>2. Оплата</h3>
+                    <p>Выберите удобный способ оплаты: картой онлайн, при получении или в рассрочку.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>3. Подготовка заказа</h3>
+                    <p>Мы собираем и проверяем ваш заказ на складе. Обычно это занимает 1-2 рабочих дня.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="timeline-content">
+                    <h3>4. Доставка</h3>
+                    <p>Курьер доставляет заказ по указанному адресу в согласованное время.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="delivery-options">
+            <h2>Способы доставки</h2>
+            <div class="options-grid">
+                <div class="option-card">
+                    <i class="fas fa-city"></i>
+                    <h3>Курьерская доставка по Москве</h3>
+                    <div class="option-price">Бесплатно от 20 000 ₽</div>
+                    <p>Доставка в течение 1-2 дней</p>
+                    <ul>
+                        <li>Бесплатно при заказе от 20 000 ₽</li>
+                        <li>500 ₽ при заказе до 20 000 ₽</li>
+                        <li>Точное время согласовывается</li>
+                        <li>Подъем на этаж бесплатно</li>
+                    </ul>
+                </div>
+                
+                <div class="option-card">
+                    <i class="fas fa-globe-europe"></i>
+                    <h3>Доставка по России</h3>
+                    <div class="option-price">от 500 ₽</div>
+                    <p>Доставка в течение 3-7 дней</p>
+                    <ul>
+                        <li>Рассчитывается индивидуально</li>
+                        <li>Доставка до пункта выдачи</li>
+                        <li>Возможна доставка курьером</li>
+                        <li>Страхование груза включено</li>
+                    </ul>
+                </div>
+                
+                <div class="option-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Самовывоз</h3>
+                    <div class="option-price">Бесплатно</div>
+                    <p>Из наших магазинов</p>
+                    <ul>
+                        <li>Бесплатный самовывоз</li>
+                        <li>5 пунктов выдачи в Москве</li>
+                        <li>Готовность заказа - 2 часа</li>
+                        <li>Консультация на месте</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-methods-section">
+            <h2>Способы оплаты</h2>
+            <div class="payment-grid">
+                <div class="payment-card">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Картой онлайн</h3>
+                    <p>Оплата банковской картой на сайте</p>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-mir"></i>
+                    </div>
+                </div>
+                
+                <div class="payment-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>При получении</h3>
+                    <p>Наличными или картой курьеру</p>
+                    <p>Доступно для доставки по Москве</p>
+                </div>
+                
+                <div class="payment-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Рассрочка</h3>
+                    <p>Рассрочка 0% на 12 месяцев</p>
+                    <p>Оформляется онлайн за 5 минут</p>
+                </div>
+                
+                <div class="payment-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Банковский перевод</h3>
+                    <p>Оплата по счету для юридических лиц</p>
+                    <p>Счет высылается на email</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="delivery-faq">
+            <h2>Частые вопросы о доставке</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Как отследить статус доставки?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>После оформления заказа вам придет SMS с номером отслеживания. Также вы можете отслеживать статус в личном кабинете или по телефону 8 (800) 123-45-67.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Можно ли изменить адрес доставки?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, вы можете изменить адрес доставки до момента отправки заказа. Позвоните нам по телефону 8 (800) 123-45-67 или напишите на info@technodom.ru.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Что делать, если товар поврежден?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>При получении обязательно проверяйте товар. Если обнаружены повреждения, откажитесь от получения и сообщите об этом курьеру. Мы заменим товар или вернем деньги.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Есть ли доставка в выходные?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Да, мы осуществляем доставку по субботам с 9:00 до 18:00. Доставка в воскресенье возможна по предварительной договоренности.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="delivery-contacts">
+            <h2>Остались вопросы?</h2>
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>8 (800) 123-45-67</p>
+                    <p>Ежедневно с 9:00 до 21:00</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>delivery@technodom.ru</p>
+                    <p>Ответим в течение 2 часов</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Онлайн-чат</h3>
+                    <p>На сайте круглосуточно</p>
+                    <button class="btn btn-outline">Открыть чат</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>ТехноДом</h3>
+                <p>Магазин качественной бытовой техники с 2010 года</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Покупателям</h3>
+                <ul>
+                    <li><a href="../САЙТ/pages/catalog.html">Каталог</a></li>
+                    <li><a href="../САЙТ/pages/delivery.html">Доставка и оплата</a></li>
+                    <li><a href="../САЙТ/pages/faq.html">Вопросы и ответы</a></li>
+                    <li><a href="../САЙТ/pages/privacy.html">Политика конфиденциальности</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> 8 (800) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@technodom.ru</p>
+                <p><i class="fas fa-map-marker-alt"></i> Москва, ул. Техническая, 15</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ТехноДом. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            updateFavCount();
+            
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav ul');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('show');
+            });
+    
+    // Инициализация FAQ
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            if (!e.target.classList.contains('faq-question')) return;
+            this.classList.toggle('active');
+        });
+    });
+});
+
+        
+        // Стили для доставки
+        const style = document.createElement('style');
+        style.textContent = `
+            .delivery-timeline {
+                position: relative;
+                margin: 40px 0;
+                padding-left: 30px;
+            }
+            
+            .delivery-timeline:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: var(--secondary);
+            }
+            
+            .timeline-item {
+                position: relative;
+                margin-bottom: 40px;
+            }
+            
+            .timeline-icon {
+                position: absolute;
+                left: -40px;
+                top: 0;
+                width: 30px;
+                height: 30px;
+                background: var(--secondary);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+            
+            .timeline-content {
+                background: white;
+                padding: 20px;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                margin-left: 20px;
+            }
+            
+            .options-grid, .payment-grid, .contacts-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin: 40px 0;
+            }
+            
+            .option-card, .payment-card, .contact-card {
+                background: white;
+                padding: 30px;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                text-align: center;
+                transition: var(--transition);
+            }
+            
+            .option-card:hover, .payment-card:hover, .contact-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+            }
+            
+            .option-card i, .payment-card i, .contact-card i {
+                font-size: 2.5rem;
+                color: var(--secondary);
+                margin-bottom: 20px;
+            }
+            
+            .option-price {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: var(--accent);
+                margin: 15px 0;
+            }
+            
+            .option-card ul {
+                text-align: left;
+                margin-top: 20px;
+                padding-left: 20px;
+            }
+            
+            .option-card li {
+                margin-bottom: 10px;
+                position: relative;
+            }
+            
+            .option-card li:before {
+                content: '✓';
+                position: absolute;
+                left: -20px;
+                color: var(--success);
+            }
+            
+            .payment-icons {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 20px;
+                font-size: 2rem;
+                color: var(--gray);
+            }
+            
+            .delivery-faq {
+                margin: 60px 0;
+            }
+            
+            .faq-list {
+                margin-top: 30px;
+            }
+            
+            @media (max-width: 768px) {
+                .delivery-timeline {
+                    padding-left: 20px;
+                }
+                
+                .timeline-icon {
+                    left: -30px;
+                    width: 25px;
+                    height: 25px;
+                    font-size: 0.8rem;
+                }
+                
+                .options-grid, .payment-grid, .contacts-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
